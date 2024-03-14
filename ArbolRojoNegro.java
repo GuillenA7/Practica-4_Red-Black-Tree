@@ -116,15 +116,15 @@ public class ArbolRojoNegro {
         arbolRN.insertar(11);
 
         System.out.println("Recorrido en orden:");
-        Recorrido.enOrden(arbolRN.raiz); // Salida: 3 7 8 10 11 18 22
+        Recorrido.enOrden(arbolRN.raiz);
         System.out.println();
 
         System.out.println("Recorrido preorden:");
-        Recorrido.preOrden(arbolRN.raiz); // Salida: 7 3 10 8 11 18 22
+        Recorrido.preOrden(arbolRN.raiz);
         System.out.println();
 
         System.out.println("Recorrido postorden:");
-        Recorrido.postOrden(arbolRN.raiz); // Salida: 3 8 11 10 22 18 7
+        Recorrido.postOrden(arbolRN.raiz);
         System.out.println();
     }
 }
