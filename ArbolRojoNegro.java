@@ -5,36 +5,23 @@ enum Color {
 public class ArbolRojoNegro {
     private Nodo raiz;
 
-    private void rotarIzquierda(Nodo x) {
-        Nodo y = x.derecha;
-        x.derecha = y.izquierda;
-        if (y.izquierda != null)
-            y.izquierda.padre = x;
-        y.padre = x.padre;
-        if (x.padre == null)
-            raiz = y;
-        else if (x == x.padre.izquierda)
-            x.padre.izquierda = y;
-        else
-            x.padre.derecha = y;
-        y.izquierda = x;
-        x.padre = y;
+    public void insertar(int dato) {
+        Nodo nuevoNodo = new Nodo(dato);
+        raiz = insertarBST(raiz, nuevoNodo);
+        corregirViolacion(nuevoNodo);
     }
 
-    private void rotarDerecha(Nodo x) {
-        Nodo y = x.izquierda;
-        x.izquierda = y.derecha;
-        if (y.derecha != null)
-            y.derecha.padre = x;
-        y.padre = x.padre;
-        if (x.padre == null)
-            raiz = y;
-        else if (x == x.padre.derecha)
-            x.padre.derecha = y;
-        else
-            x.padre.izquierda = y;
-        y.derecha = x;
-        x.padre = y;
+    private Nodo insertarBST(Nodo raiz, Nodo nuevoNodo) {
+        if (raiz == null)
+            return nuevoNodo;
+        if (nuevoNodo.dato < raiz.dato) {
+            raiz.izquierda = insertarBST(raiz.izquierda, nuevoNodo);
+            raiz.izquierda.padre = raiz;
+        } else if (nuevoNodo.dato > raiz.dato) {
+            raiz.derecha = insertarBST(raiz.derecha, nuevoNodo);
+            raiz.derecha.padre = raiz;
+        }
+        return raiz;
     }
 
     private void corregirViolacion(Nodo z) {
@@ -86,23 +73,36 @@ public class ArbolRojoNegro {
         raiz.color = Color.NEGRO;
     }
 
-    public void insertar(int dato) {
-        Nodo nuevoNodo = new Nodo(dato);
-        raiz = insertarBST(raiz, nuevoNodo);
-        corregirViolacion(nuevoNodo);
+    private void rotarIzquierda(Nodo x) {
+        Nodo y = x.derecha;
+        x.derecha = y.izquierda;
+        if (y.izquierda != null)
+            y.izquierda.padre = x;
+        y.padre = x.padre;
+        if (x.padre == null)
+            raiz = y;
+        else if (x == x.padre.izquierda)
+            x.padre.izquierda = y;
+        else
+            x.padre.derecha = y;
+        y.izquierda = x;
+        x.padre = y;
     }
 
-    private Nodo insertarBST(Nodo raiz, Nodo nuevoNodo) {
-        if (raiz == null)
-            return nuevoNodo;
-        if (nuevoNodo.dato < raiz.dato) {
-            raiz.izquierda = insertarBST(raiz.izquierda, nuevoNodo);
-            raiz.izquierda.padre = raiz;
-        } else if (nuevoNodo.dato > raiz.dato) {
-            raiz.derecha = insertarBST(raiz.derecha, nuevoNodo);
-            raiz.derecha.padre = raiz;
-        }
-        return raiz;
+    private void rotarDerecha(Nodo x) {
+        Nodo y = x.izquierda;
+        x.izquierda = y.derecha;
+        if (y.derecha != null)
+            y.derecha.padre = x;
+        y.padre = x.padre;
+        if (x.padre == null)
+            raiz = y;
+        else if (x == x.padre.derecha)
+            x.padre.derecha = y;
+        else
+            x.padre.izquierda = y;
+        y.derecha = x;
+        x.padre = y;
     }
 
     public static void main(String[] args) {
