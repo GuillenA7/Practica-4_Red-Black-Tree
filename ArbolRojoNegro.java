@@ -130,8 +130,8 @@ public class ArbolRojoNegro {
         Recorrido.postOrden(arbolRN.raiz);
         System.out.println();
 
-		System.out.print("\n\nArbol balanceado (horizontal):");
-		Recorrido.RecorridoHorizontal(arbolRN.raiz, 0);
+	System.out.print("\n\nArbol balanceado (horizontal):");
+	Recorrido.RecorridoHorizontal(arbolRN.raiz, 0);
         System.out.println();
     }
 }
